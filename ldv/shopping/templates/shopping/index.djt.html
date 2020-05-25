@@ -1,0 +1,22 @@
+{% extends 'shopping/base.djt.html' %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+  <div class="columns">
+    {% for clothe in clothes %}
+    <div class="column is-one-quarter">
+        <div class="card">
+            <div class="card-content">
+                <div class="content">
+                    <a class="title is-3" href="/shopping/{{ clothe.id }}">{{ clothe.name }}</a>
+                    <br>
+                    <p class="subtitle is-5">{{ clothe.description }}</p>
+                    <input type="text" class="input" value="{{ clothe.price }}" disabled />
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock %}

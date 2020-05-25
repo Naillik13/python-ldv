@@ -9,7 +9,7 @@ class Index(TemplateView):
     Index View
     """
 
-    template_name = "shopping/index.html"
+    template_name = "shopping/index.djt.html"
 
     def get(self, request, *args, **kwargs):
         clothes = Clothe.objects.all()
@@ -21,7 +21,7 @@ class Details(TemplateView):
     Clothe details
     """
 
-    template_name = "shopping/details.html"
+    template_name = "shopping/details.djt.html"
 
     def get(self, request, *args, **kwargs):
         clothe = get_object_or_404(Clothe, id=kwargs['id'])

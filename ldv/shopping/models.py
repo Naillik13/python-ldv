@@ -1,7 +1,14 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-# Create your models here.
+class User(AbstractUser):
+    """
+    Shopping user
+    """
+    phone = models.CharField(max_length=10, default="")
+    clothes = models.ManyToManyField('Clothe')
+
 
 class Clothe(models.Model):
     """
