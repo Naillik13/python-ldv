@@ -23,6 +23,6 @@ class Details(TemplateView):
 
     template_name = "shopping/details.html"
 
-    def get(self, request, id, *args, **kwargs):
-        clothe = get_object_or_404(Clothe, id=id)
+    def get(self, request, *args, **kwargs):
+        clothe = get_object_or_404(Clothe, id=kwargs['id'])
         return render(request, self.template_name, {'clothe': clothe})
