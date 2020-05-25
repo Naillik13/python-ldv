@@ -1,0 +1,8 @@
+{% extends 'shopping/base.html' %}
+{% block title %} {{ clothe.name }} {% endblock %}
+
+{% block content %}
+    <h1 class="title is-1">{{ clothe.name }}</h1>
+    <p class="subtitle is-5">{{ clothe.description }}</p>
+    <input type="text" class="input" value="{{clothe.price}}" disabled/>
+{% endblock %}

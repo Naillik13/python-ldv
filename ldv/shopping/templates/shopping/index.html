@@ -1,9 +1,16 @@
-<html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <title>Index</title>
-</head>
-<body>
-    <p>{{test}}</p>
-</body>
-</html>
+{% extends 'shopping/base.html' %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+  <div class="columns">
+    {% for clothe in clothes %}
+    <div class="column">
+        <a class="title is-3" href="/shopping/{{ clothe.id }}">{{ clothe.name }}</a>
+        <br>
+        <p class="subtitle is-5">{{ clothe.description }}</p>
+        <input type="text" class="input" value="{{ clothe.price }}" disabled />
+    </div>
+    {% endfor %}
+  </div>
+{% endblock %}
