@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
-    <title>{% block title %} Title {% endblock %}</title>
-  </head>
-  <body>
-    <section class="hero is-large">
-        <div class="hero-head">
-          <nav class="navbar">
-            <div class="navbar-item">
-              <a href="{% url 'logout' %}" class="button is-warning">Logout</a>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+        <title>{% block title %} Title {% endblock %}</title>
+    </head>
+    <body>
+        <section>
+            <div>
+                <nav class="navbar">
+                    {% if user.is_authenticated %}
+                        <div class="navbar-item">
+                            <a href="{% url 'logout' %}" class="button is-warning">Logout</a>
+                        </div>
+                        <div class="navbar-item">
+                            <a href="{% url 'cart' %}" class="button is-success">Basket</a>
+                        </div>
+                        <div class="navbar-item">
+                            <a href="{% url 'shop' %}" class="button is-info">Shop</a>
+                        </div>
+                    {% else %}
+                        <div class="navbar-item">
+                            <a href="{% url 'login' %}" class="button is-warning">Login</a>
+                        </div>
+                    {% endif %}
+                </nav>
             </div>
-            <div class="navbar-item">
-              <a href="{% url 'cart' %}" class="button is-success">Basket</a>
+            <div class="section">
+                {% block content %}
+                {% endblock %}
             </div>
-          </nav>
-        </div>
-        <div class="hero-body">
-            {% block content %}
-            {% endblock %}
-        </div>
-    </section>
-  </body>
+        </section>
+    </body>
 </html>

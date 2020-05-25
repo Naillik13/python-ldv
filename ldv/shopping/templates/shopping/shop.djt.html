@@ -3,25 +3,25 @@
 {% block title %}Index{% endblock %}
 
 {% block content %}
-  <div class="columns">
-    {% for product in products %}
-    <div class="column is-one-quarter">
-        <div class="card">
-            <div class="card-image">
-                <figure class="image is-4by3">
-                    <img src="{{ product.image.path }}" alt="Placeholder image">
-                </figure>
-            </div>
-            <div class="card-content">
-                <div class="content">
-                    <a class="title is-3" href="/shopping/{{ product.id }}">{{ product.name }}</a>
-                    <br>
-                    <p class="subtitle is-5">{{ product.description }}</p>
-                    <input type="text" class="input" value="{{ product.price }}" disabled />
+    <div class="columns">
+        {% for product in products %}
+            <div class="column is-one-quarter">
+                <div class="card">
+                    <div class="card-image">
+                        <figure class="image is-4by3">
+                            <img src="{{ product.image.url }}" alt="Placeholder image">
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <div class="content">
+                            <a class="title is-3" href="/shopping/{{ product.id }}">{{ product.name }}</a>
+                            <br>
+                            <p class="subtitle is-5">{{ product.description }}</p>
+                            <input type="text" class="input" value="{{ product.price }}" disabled />
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-  </div>
 {% endblock %}
