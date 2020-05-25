@@ -13,8 +13,8 @@ class Index(LoginRequiredMixin, TemplateView):
     template_name = "shopping/index.djt.html"
 
     def get(self, request, *args, **kwargs):
-        clothes = Product.objects.all()
-        return render(request, self.template_name, {'clothes': clothes})
+        products = Product.objects.all()
+        return render(request, self.template_name, {'products': products})
 
 
 class Details(TemplateView, LoginRequiredMixin):
@@ -27,6 +27,14 @@ class Details(TemplateView, LoginRequiredMixin):
     def get(self, request, *args, **kwargs):
         product = get_object_or_404(Product, id=kwargs['id'])
         user = request.user
-        user.products.add(product)
+        user.items.add(product)
         user.save()
         return render(request, self.template_name, {'product': product})
+
+
+class Cart(TemplateView, LoginRequiredMixin):
+    """
+    User cart
+    """
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)

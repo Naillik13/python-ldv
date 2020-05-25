@@ -6,8 +6,17 @@ class User(AbstractUser):
     """
     Shopping user
     """
-    phone = models.CharField(max_length=10, default="")
-    products = models.ManyToManyField('Product')
+
+
+class Item(models.Model):
+    """
+    User item
+    """
+    user = models.ForeignKey('User', on_delete=models.CASCADE, related_name='items')
+    product = models.ForeignKey('Product', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.product.name} for {self.user.username}"
 
 
 class Product(models.Model):
@@ -25,3 +34,4 @@ class Product(models.Model):
     class Meta:
         verbose_name = "Product"
         verbose_name_plural = "Products"
+
