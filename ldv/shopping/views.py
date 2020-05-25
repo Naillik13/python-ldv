@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.base import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-from shopping.models import Clothe
+from shopping.models import Product
 
 
-class Index(TemplateView):
+class Index(LoginRequiredMixin, TemplateView):
     """
     Index View
     """
@@ -12,11 +13,11 @@ class Index(TemplateView):
     template_name = "shopping/index.djt.html"
 
     def get(self, request, *args, **kwargs):
-        clothes = Clothe.objects.all()
+        clothes = Product.objects.all()
         return render(request, self.template_name, {'clothes': clothes})
 
 
-class Details(TemplateView):
+class Details(TemplateView, LoginRequiredMixin):
     """
     Clothe details
     """
@@ -24,5 +25,8 @@ class Details(TemplateView):
     template_name = "shopping/details.djt.html"
 
     def get(self, request, *args, **kwargs):
-        clothe = get_object_or_404(Clothe, id=kwargs['id'])
-        return render(request, self.template_name, {'clothe': clothe})
+        product = get_object_or_404(Product, id=kwargs['id'])
+        user = request.user
+        user.products.add(product)
+        user.save()
+        return render(request, self.template_name, {'product': product})

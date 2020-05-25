@@ -1,17 +1,18 @@
 from django.apps import apps
 from django.contrib import admin
-from shopping.models import Clothe
+from shopping.models import Product
 
 
 # Register your models here.
 
-@admin.register(Clothe)
+@admin.register(Product)
 class AdminClothe(admin.ModelAdmin):
     list_display = ('name', 'description', 'price')
     search_fields = ('name', 'price')
     fieldsets = (
         ("Text", {'fields': ('name', 'description')}),
-        ("Number", {'fields': ('price',)})
+        ("Number", {'fields': ('price',)}),
+        (None, {'fields': ('image',)})
     )
 
 

@@ -1,4 +1,4 @@
-{% extends 'shopping/base.djt.html' %}
+{% extends 'shopping/base.djt.html' %}{% load static %}
 
 {% block title %}Index{% endblock %}
 
@@ -7,6 +7,11 @@
     {% for clothe in clothes %}
     <div class="column is-one-quarter">
         <div class="card">
+            <div class="card-image">
+                <figure class="image is-4by3">
+                    <img src="{% get_media_prefix %}{{ clothe.image }}" alt="Placeholder image">
+                </figure>
+            </div>
             <div class="card-content">
                 <div class="content">
                     <a class="title is-3" href="/shopping/{{ clothe.id }}">{{ clothe.name }}</a>

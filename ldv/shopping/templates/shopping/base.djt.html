@@ -6,7 +6,10 @@
     <title>{% block title %} Title {% endblock %}</title>
   </head>
   <body class="container">
-    {% block content %}
-    {% endblock %}
+      <a href="/shopping/logout" class="button">Logout</a>
+      <div class="container">
+        {% block content %}
+        {% endblock %}
+      </div>
   </body>
 </html>
