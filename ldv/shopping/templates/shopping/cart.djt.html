@@ -1,0 +1,16 @@
+{% extends 'shopping/base.djt.html' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+<p class="content">Your cart is :</p>
+<div class="columns is-multiline">
+  {% for item in items %}
+  <div class="column is-one-fifth">
+    <h1 class="title is-1">{{ item.product.name }}</h1>
+    <p class="subtitle is-3">{{ item.product.description }}</p>
+    <input type="text" class="input" value="{{ item.product.price }}" disabled />
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
